@@ -44,4 +44,4 @@ First set the export the UID and GID with:
 
 Run the container with:
 
-`docker run -d -p 8786:8787 -v /home/rjederks/Documents/Projects:/home/rstudio -e PASSWORD=my_passwd -e USERID=$UID -e GROUPID=$GID ricolumc/soda:v0.1.0`
+`docker run -d -p 8786:8787 -v /home/rjederks/Documents/Projects:/home/rstudio/projects -e PASSWORD=my_passwd -e USERID=$UID -e GROUPID=$GID ricolumc/soda:v0.1.0`
