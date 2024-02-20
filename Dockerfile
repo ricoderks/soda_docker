@@ -1,31 +1,50 @@
-FROM rocker/verse:4.1.2
+FROM rocker/shiny:latest
 LABEL maintainer "Rico Derks" r.j.e.derks@lumc.nl
+
+## install some packages I need (e.g. from bioconductor)
+## not yet the same approach as above (i.e. install SUGGETS list manually)
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    git \
+    subversion \
+    libglpk-dev \
+  && . /etc/environment
 
 # install some packges  
 RUN  install2.r --error --skipinstalled \ 
     BiocManager \
-    googleVis \
-    glmnet \
-    shiny \
-    readxl \
-    xlsx \
-    reshape \
-    reshape2 \
-    ggplot2 \
-    ggpubr \
-    ggExtra \
-    cowplot \
-    RColorBrewer \
-    pROC \
-    corrplot \
-    gplots \
-    dendextend \
-    plotly \
-    shinymanager \
+    rmarkdown \
+    markdown \
     shinyjs \
-    shinyWidgets
+    bs4Dash \
+    shinyWidgets \
+    shinybrowser \
+    shinymanager \
+    shinyvalidate \
+    ggplot2 \
+    gridExtra \
+    plotly \
+    visNetwork \
+    heatmaply \
+    ggpubr \
+    ggupset \
+    networkD3 \
+    igraph \
+    ellipse \
+    stringr \
+    DT \
+    readxl \
+    grDevices \
+    RColorBrewer \
+    stats \
+    glmnet \
+    ggridges \
+    SNFtool \
+    reshape2 \
+    dplyr \
+    tidyr
+
   
-RUN R -e 'BiocManager::install(c("ComplexHeatmap", "InteractiveComplexHeatmap"))' \
-    && R -e 'remotes::install_github("talgalili/d3heatmap")'
+RUN R -e 'BiocManager::install(c("pcaMethods", "org.Hs.eg.db", "enrichplot", "clusterProfiler", "MOFA2", "basilisk"))'
   
 RUN  rm -rf /tmp/downloaded_packages/ /tmp/*.rds
