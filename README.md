@@ -1,38 +1,13 @@
 ## Introduction
 
-This image is based on **rocker/verse** version 4.1.2. Version 4.2 gives some errors.
+This image is based on **rocker/shiny**.
 
-Packages needed:
-
-* googleVis
-* glmnet
-* d3heatmap
-* shiny
-* readxl
-* xlsx
-* reshape
-* reshape2
-* ggplot2
-* ggpubr
-* ggExtra
-* cowplot
-* RColorBrewer
-* pROC
-* ggbiplot <- don't install this one
-* corrplot
-* gplots
-* tidyverse
-* dendextend
-* ComplexHeatmap
-* InteractiveComplexHeatmap
-* plotly
-* shinymanager
 
 ## Build
 
 Build with:
 
-`docker build --tag ricolumc/soda:v0.1.0 .`
+`docker build --tag <name of tag> .`
 
 ## Run
 
@@ -44,4 +19,9 @@ First set the export the UID and GID with:
 
 Run the container with:
 
-`docker run -d -p 8786:8787 -v /home/rjederks/Documents/Projects:/home/rstudio/projects -e PASSWORD=my_passwd -e USERID=$UID -e GROUPID=$GID ricolumc/soda:v0.1.0`
+`docker run -d -p 3838:3838 -v <name of folder with soda-light>:/srv/shiny-server -v <name of folder for log file>:/var/log/shiny-server <name of tag>`
+
+Example:
+
+`docker run -d -p 3838:3838 -v /srv/shiny-server:/srv/shiny-server -v /var/log/shiny-server:/var/log/shiny-server ricolumc/soda-light:v0.1.0`
+
